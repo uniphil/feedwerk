@@ -11,7 +11,7 @@
 import datetime
 import pytest
 
-from werkzeug.contrib.atom import format_iso8601, AtomFeed, FeedEntry
+from feedwerk.atom import format_iso8601, AtomFeed, FeedEntry
 
 
 class TestAtomFeed(object):
