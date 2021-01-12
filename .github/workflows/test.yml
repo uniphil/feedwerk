@@ -1,0 +1,20 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '2.7', '3.5', '3.8' ]
+        werkzeug-version: [ '==1.0.0', '' ]
+    name: Python ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install pytest flake8 werkzeug${{ matrix.werkzeug-version }}
+      - run: python -m pytest
+      - run: flake8 --max-line-length=100 *.py tests feedwerk
