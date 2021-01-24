@@ -20,6 +20,7 @@ setup(
     author_email="phil@commit--blog.com",
     description="The atom feed generator from werkzeug.",
     long_description=readme,
+    long_description_content_type="text/markdown",
     classifiers=[
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
