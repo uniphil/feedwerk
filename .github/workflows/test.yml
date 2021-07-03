@@ -7,9 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '2.7', '3.5', '3.8' ]
-        werkzeug-version: [ '==1.0.0', '' ]
-    name: Python ${{ matrix.python-version }}
+        python-version: [ '3.6', '3.9' ]
+        werkzeug-version: [ '~=1.0', '~=2.0' ]
+        include:
+          - python-version: '2.7'  # werkzeug 2.0 drops python2 entirely
+            werkzeug-version: '==1.0.0'
+          - python-version: '3.5'  # werkzeug 2.0 needs python3.6+ (1.0 was 3.5+)
+            werkzeug-version: '~=1.0'
+    name: Python ${{ matrix.python-version }} / werkzeug ${{ matrix.werkzeug-version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
