@@ -20,6 +20,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - run: pip install pytest flake8 werkzeug${{ matrix.werkzeug-version }}
+      - run: pip install pytest flake8 werkzeug${{ matrix.werkzeug-version }} markupsafe
       - run: python -m pytest
       - run: flake8 --max-line-length=100 *.py tests feedwerk

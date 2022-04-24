@@ -22,7 +22,7 @@
     :license: BSD-3-Clause
 """
 from datetime import datetime
-from werkzeug.utils import escape
+from markupsafe import escape
 from werkzeug.wrappers import BaseResponse
 
 from ._compat import implements_to_string, string_types
