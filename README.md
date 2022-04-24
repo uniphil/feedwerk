@@ -35,6 +35,18 @@ managed (painfully!) to retain the git history for this module and its tests,
 so I think it's a good starting place :)
 
 
+## changes
+
+### v1.1.0 2022-04-24
+
+Some features we depended on were deprecated in werkzeug 2.0 and removed in 2.1:
+
+- remove `werkzeug.utils.escape` in favour of MarkupSafe [#2](https://github.com/uniphil/feedwerk/pull/2/) [@mar1ad](https://github.com/mar1ad)
+- use `Response` instead of `werkzeug.wrappers.BaseResponse` [#3](https://github.com/uniphil/feedwerk/pull/3/) [@uniphil](https://github.com/uniphil)
+
+Both changes are backwards-compatible with previous werkzeug back to 1.0. Client code that depends on the return type of `AtomFeed.get_response()` may need to be updated in rare cases.
+
+
 ## work on feedwerk
 
 ### run tests
