@@ -22,8 +22,8 @@
     :license: BSD-3-Clause
 """
 from datetime import datetime
-from werkzeug.utils import escape
-from werkzeug.wrappers import BaseResponse
+from markupsafe import escape
+from werkzeug.wrappers import Response
 
 from ._compat import implements_to_string, string_types
 
@@ -216,7 +216,7 @@ class AtomFeed(object):
 
     def get_response(self):
         """Return a response object for the feed."""
-        return BaseResponse(self.to_string(), mimetype='application/atom+xml')
+        return Response(self.to_string(), mimetype='application/atom+xml')
 
     def __call__(self, environ, start_response):
         """Use the class as WSGI response object."""
