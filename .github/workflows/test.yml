@@ -4,14 +4,12 @@ on: push
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version: [ '3.6', '3.10' ]
+        python-version: [ '3.6', '3.12' ]
         werkzeug-version: [ '~=1.0', '~=2.0' ]
         include:
-          - python-version: '2.7'  # werkzeug 2.0 drops python2 entirely
-            werkzeug-version: '==1.0.0'
           - python-version: '3.5'  # werkzeug 2.0 needs python3.6+ (1.0 was 3.5+)
             werkzeug-version: '~=1.0'
     name: Python ${{ matrix.python-version }} / werkzeug ${{ matrix.werkzeug-version }}
@@ -21,7 +19,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install pytest werkzeug${{ matrix.werkzeug-version }} markupsafe
-      - run: python -m pytest
+      - run: python -m pytest -Werror
+
+  test-py27:
+    runs-on: ubuntu-20.04
+    container:
+      image: python:2.7.18-buster
+    name: Python 2.7 / werkzeug ==1.0.0  # werkzeug 2.0 drops python2 entirely
+    steps:
+      - uses: actions/checkout@v2
+      - run: pip install pytest werkzeug==1.0.0 markupsafe
+      - run: python -m pytest -Werror
 
   lint:
     runs-on: ubuntu-latest

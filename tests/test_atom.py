@@ -57,6 +57,23 @@ class TestAtomFeed(object):
         assert str(a).strip().replace(' ', '') == \
             expected_repr.strip().replace(' ', '')
 
+    def test_atom_to_str_no_updated(self):
+        expected_before_updated = '''
+        <?xml version="1.0" encoding="utf-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom">
+            <title type="text">test_title</title>
+            <id>1</id>
+            <
+        '''
+        expected_after_updated = '''
+            <generator>Werkzeug</generator>
+        </feed>
+        '''
+        a = AtomFeed(title='test_title', id=1)
+        before_updated, _, after_updated = str(a).replace(' ', '').split('updated>')
+        assert before_updated.strip() == expected_before_updated.strip().replace(' ', '')
+        assert after_updated.strip() == expected_after_updated.strip().replace(' ', '')
+
 
 class TestFeedEntry(object):
     """
