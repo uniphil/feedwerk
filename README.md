@@ -37,6 +37,13 @@ so I think it's a good starting place :)
 
 ## changes
 
+### v1.2.0 2024-01-28
+
+Python deprecated `datetime.datetime.utcnow()`:
+
+- Use `datetime.now(timezone.utc)` with `.utcnow()` fallback for python 2.7 [#6](https://github.com/uniphil/feedwerk/pull/6/) [@uniphil](https://github.com/uniphil) with thanks to [@Siecje](https://github.com/Siecje) for [reporting it](https://github.com/uniphil/feedwerk/issues/5).
+
+
 ### v1.1.0 2022-04-24
 
 Some features we depended on were deprecated in werkzeug 2.0 and removed in 2.1:

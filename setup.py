@@ -8,7 +8,7 @@ with io.open('README.md', 'rt', encoding='utf8') as f:
 
 setup(
     name="feedwerk",
-    version="1.1.0",
+    version="1.2.0",
     url="https://github.com/uniphil/feedwerk",
     project_urls={
         "Documentation": "https://github.com/uniphil/feedwerk",
