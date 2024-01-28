@@ -27,6 +27,12 @@ from werkzeug.wrappers import Response
 
 from ._compat import implements_to_string, string_types
 
+try:
+    from datetime import timezone
+    def utcnow(): return datetime.now(timezone.utc)
+except ImportError:  # python27 doesn't have datetime.timezone
+    utcnow = datetime.utcnow
+
 XHTML_NAMESPACE = 'http://www.w3.org/1999/xhtml'
 
 
@@ -163,7 +169,7 @@ class AtomFeed(object):
 
         if not self.updated:
             dates = sorted([entry.updated for entry in self.entries])
-            self.updated = dates[-1] if dates else datetime.utcnow()
+            self.updated = dates[-1] if dates else utcnow()
 
         yield u'<?xml version="1.0" encoding="utf-8"?>\n'
         yield u'<feed xmlns="http://www.w3.org/2005/Atom">\n'
