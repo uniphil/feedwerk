@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install pytest werkzeug${{ matrix.werkzeug-version }} markupsafe
-      - run: python -m pytest
+      - run: python -m pytest -Werror
 
   test-py27:
     runs-on: ubuntu-20.04
