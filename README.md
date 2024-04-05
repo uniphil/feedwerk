@@ -7,7 +7,7 @@ of the Werkzeug package.
 This repository is a straight-forward extract of the [atom code](https://github.com/pallets/werkzeug/blob/0.16.1/src/werkzeug/contrib/atom.py)
 from Werkzeug version `0.16.1`, including unit tests.
 
-![Test]([https://github.com/uniphil/feedwerk/workflows/Test/badge.svg?branch=main](https://github.com/uniphil/feedwerk/actions/workflows/test.yml/badge.svg?branch=main)
+![Test](https://github.com/uniphil/feedwerk/workflows/Test/badge.svg?branch=main](https://github.com/uniphil/feedwerk/actions/workflows/test.yml/badge.svg?branch=main)
 
 ## install & migrate from werkzeug.contrib.atom
 
